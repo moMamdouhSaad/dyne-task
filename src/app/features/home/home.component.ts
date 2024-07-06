@@ -4,13 +4,15 @@ import { IRestaurant } from '../../core/models/restaurant.model';
 import { Observable } from 'rxjs';
 import { RestaurantManager } from '../../core/services/restaurant/restaurant.manager';
 import { RouterModule } from '@angular/router';
+import { RestaurantCardComponent } from '../../shared/components/restaurant-card/restaurant-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    RestaurantCardComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

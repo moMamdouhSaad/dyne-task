@@ -1,3 +1,32 @@
-:host {
-  display: block;
+
+.example-card {
+  max-width: 320px;
+}
+
+
+.rest-img {
+  height: 100px; /* Set a fixed height */
+  width: 100%; /* Ensure the image takes full width of its container */
+  object-fit: cover; /* Maintain aspect ratio; cover entire container */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+
+  &:hover{
+    opacity: 0.8; /* Adjust opacity on hover */
+    cursor: pointer;
+
+  }
+}
+
+
+.rest-title{
+  color:var(--gold);
+  display: flex !important;
+  justify-content: center !important ;
+  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+  font-family: Saira !important
+}
+
+.tag-title{
+  font-family: Saira !important
+
 }

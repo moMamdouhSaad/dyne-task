@@ -5,4 +5,5 @@ export interface IRestaurant {
   name: string;
   restaurantBackground: string;
   menus: IMenu[];
+  tags:string[]
 }

@@ -13,7 +13,7 @@ import { IRestaurant } from '../../core/models/restaurant.model';
   imports: [CommonModule, RouterModule],
   templateUrl: 'menu.component.html',
   styleUrl: './menu.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class MenuComponent {
   // restaurantId: number | string;
@@ -44,6 +44,7 @@ this.loadMenus()
 
       if(selectedRestaurant){
         this.menuManager.setRestaurantMenus(selectedRestaurant.menus)
+       this.menus$ =  this.menuManager.getRestaurantMenus$()
       }
       else{
 

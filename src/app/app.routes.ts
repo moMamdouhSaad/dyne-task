@@ -4,8 +4,13 @@ import { HomeComponent } from './features/home/home.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   {
-    path: 'menu/:restaurantId',
+    path: 'restaurant/:restaurantId',
     loadComponent: () =>
       import('./features/menu/menu.component').then((m) => m.MenuComponent),
+  },
+  {
+    path: 'menus/:menuId',
+    loadComponent: () =>
+      import('./features/menu-items/menu-items.component').then((m) => m.MenuItemsComponent),
   },
 ];

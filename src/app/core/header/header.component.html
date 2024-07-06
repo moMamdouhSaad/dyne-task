@@ -1,6 +1,12 @@
 <mat-toolbar color="primary">
-  <span class="logo">Dyne task</span>
-  <span class="spacer"></span>
-  <button mat-button>Button1</button>
-  <button mat-button>Button2</button>
+  <div class="container  d-flex justify-content-between align-items-center">
+    <span class="logo cursor-pointer" [routerLink]="['/']">Dyne task</span>
+
+    <div>
+      <button mat-button>Button1</button>
+      <button mat-button>Button2</button>
+    </div>
+
+  </div>
+
 </mat-toolbar>

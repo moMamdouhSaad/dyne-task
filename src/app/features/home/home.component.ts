@@ -3,12 +3,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IRestaurant } from '../../core/models/restaurant.model';
 import { Observable } from 'rxjs';
 import { RestaurantManager } from '../../core/services/restaurant/restaurant.manager';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

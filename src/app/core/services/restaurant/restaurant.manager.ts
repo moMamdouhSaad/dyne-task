@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { RestaurantService } from './restaurant.service';
 import { RestaurantStateService } from './restaurant.state-management.ts';
+import { IRestaurant } from '../../models/restaurant.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,18 +23,20 @@ export class RestaurantManager {
       .subscribe();
   }
 
+
+
   getRestaurants$() {
     return this.restaurantState.getRestaurants$();
   }
 
-  loadMenus(restaurantId: string): void {
-    this.restaurantService
-      .getMenus(restaurantId)
-      .pipe(tap((menus) => this.restaurantState.setMenus(menus)))
-      .subscribe();
-  }
+  // loadMenus(restaurantId: string): void {
+  //   this.restaurantService
+  //     .getMenus(restaurantId)
+  //     .pipe(tap((menus) => this.restaurantState.setMenus(menus)))
+  //     .subscribe();
+  // }
 
-  getMenus$() {
-    return this.restaurantState.getMenus$();
-  }
+  // getMenus$() {
+  //   return this.restaurantState.getMenus$();
+  // }
 }

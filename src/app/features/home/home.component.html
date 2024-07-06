@@ -1,0 +1,9 @@
+
+<div class="home">
+  <h1>Restaurants</h1>
+  <div *ngFor="let restaurant of (restaurants$ | async)">
+    <div class="restaurant-card">
+      <h2>{{ restaurant.name }}</h2>
+    </div>
+  </div>
+</div>

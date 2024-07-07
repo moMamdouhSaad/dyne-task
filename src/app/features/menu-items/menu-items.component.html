@@ -1,24 +1,75 @@
-
 <div class="home">
+  <ng-container *ngIf="restaurantName; else restaurantNameSkeleton ">
 
-  <div class="text-center mb-4 d-flex flex-column mt-5">
-    <span class="h3 saira-normal-font">{{restaurantName}}</span>
-    <span class="h6 saira-normal-font">{{menuName}}</span>
+    <div class="text-center mb-4 d-flex flex-column mt-5">
+      <span class="h3 saira-normal-font">{{restaurantName}}</span>
+      <span class="h6 saira-normal-font">{{menuName}}</span>
+    </div>
 
-  </div>
+  </ng-container>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="grid-container ">
-      <div *ngFor="let menuItem of (menuItems$ | async)"  >
-        <app-menu-item-card
-          [menuItem]="menuItem"
-          (add)="handleAdd($event)"
-          (remove)="handleRemove($event)">
-        </app-menu-item-card>
+
+  <div class="container" *ngIf="(menuItems$ | async) as menuItems">
+    <div class="row justify-content-center" *ngIf="menuItems.length > 0; else loading">
+      <div class="grid-container">
+
+
+        <div *ngFor="let menuItem of menuItems">
+          <app-menu-item-card [menuItem]="menuItem" (add)="handleAdd($event)" (remove)="handleRemove($event)">
+          </app-menu-item-card>
+        </div>
+
+
       </div>
     </div>
   </div>
-</div>
 
 </div>
+
+
+<!-- content skeleton -->
+<ng-template #loading>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="grid-container">
+        <div *ngFor="let item of [].constructor(4)">
+          <ngx-skeleton-loader [theme]="{
+                width: '150px',
+                'border-radius': '10px',
+                height: '250px',
+                'margin-bottom': '10px'
+              }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+<!--  -->
+
+
+
+
+
+
+<!-- Restaraunt name skeleton -->
+<ng-template #restaurantNameSkeleton>
+
+  <div class="text-center mb-4 d-flex flex-column mt-5">
+    <ngx-skeleton-loader [theme]="{
+      width: '200px',
+      'border-radius': '10px',
+      height: '25px',
+    }"></ngx-skeleton-loader>
+
+    <ngx-skeleton-loader [theme]="{
+    width: '200px',
+    'border-radius': '10px',
+    height: '15px',
+  }"></ngx-skeleton-loader>
+  </div>
+
+
+
+</ng-template>
+<!--  -->

@@ -5,17 +5,51 @@
     <span class="h6 saira-normal-font">Find your favorite restaurant and explore their delicious menus.</span>
   </div>
 
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <ng-container *ngIf="(restaurants$ | async) as restaurants">
+
+
+        <div class="d-flex justify-content-center flex-wrap gap-4" *ngIf="restaurants.length > 0 ;else loading">
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let restaurant of restaurants">
+            <div class="card-container d-flex justify-content-center">
+              <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- loader skeletons -->
+<ng-template #loading>
   <div class="container">
     <div class="row justify-content-center">
       <div class="d-flex justify-content-center flex-wrap gap-4">
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let restaurant of (restaurants$ | async)">
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let item of [].constructor(3)">
           <div class="card-container d-flex justify-content-center">
-            <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+            <ngx-skeleton-loader [theme]="{
+      width: '100%',
+      'border-radius': '10px',
+      height: '150px',
+      'margin-bottom': '10px'
+    }"></ngx-skeleton-loader>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+</ng-template>
 
-</div>

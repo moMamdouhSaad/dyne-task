@@ -7,11 +7,12 @@ import { RestaurantManager } from '../../core/services/restaurant/restaurant.man
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { IRestaurant } from '../../core/models/restaurant.model';
 import { MenuCardComponent } from '../../shared/components/menu-card/menu-card.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, RouterModule, MenuCardComponent],
+  imports: [CommonModule, RouterModule, MenuCardComponent,NgxSkeletonLoaderModule],
   templateUrl: 'menu.component.html',
   styleUrl: './menu.component.scss',
   changeDetection: ChangeDetectionStrategy.Default,
@@ -28,9 +29,7 @@ export class MenuComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.restaurantManager.loadRestaurants();
-    // const restId =
-    // this.menuManager.loadRestaurantMenus();
+
     const restaurantId = this.route.snapshot.paramMap.get('restaurantId') as
       | number
       | string;
@@ -42,7 +41,7 @@ this.loadMenus()
       const selectedRestaurant = restaurants.find(r => r.id == +restaurantId);
 
       if(selectedRestaurant){
-        this.restaurantName = selectedRestaurant.name
+        this.restaurantName = selectedRestaurant.name;
         this.menuManager.setRestaurantMenus(selectedRestaurant.menus)
        this.menus$ =  this.menuManager.getRestaurantMenus$()
       }

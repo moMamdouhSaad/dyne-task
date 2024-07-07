@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { IMenu } from '../../core/models/menu.model';
+import { Observable } from 'rxjs';
 import { MenuItemsManager } from '../../core/services/menu-items/menu-items.manager';
 import { ActivatedRoute } from '@angular/router';
 import { IMenuItem } from '../../core/models/menu-item.model';
@@ -9,11 +8,12 @@ import { MenuItemCardComponent } from '../../shared/components/menu-item-card/me
 import { RestaurantManager } from '../../core/services/restaurant/restaurant.manager';
 import { IRestaurant } from '../../core/models/restaurant.model';
 import { CartManager } from '../../core/services/cart/cart.manager';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-menu-items',
   standalone: true,
-  imports: [CommonModule, MenuItemCardComponent],
+  imports: [CommonModule, MenuItemCardComponent, NgxSkeletonLoaderModule],
   templateUrl: './menu-items.component.html',
   styleUrl: './menu-items.component.scss',
   changeDetection: ChangeDetectionStrategy.Default,

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { RestaurantManager } from '../../core/services/restaurant/restaurant.manager';
 import { RouterModule } from '@angular/router';
 import { RestaurantCardComponent } from '../../shared/components/restaurant-card/restaurant-card.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +13,12 @@ import { RestaurantCardComponent } from '../../shared/components/restaurant-card
   imports: [
     CommonModule,
     RouterModule,
-    RestaurantCardComponent
+    RestaurantCardComponent,
+    NgxSkeletonLoaderModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class HomeComponent {
   restaurants$!: Observable<IRestaurant[]>;

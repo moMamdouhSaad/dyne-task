@@ -1,19 +1,54 @@
-<div class="home">
+<div class="menu">
 
   <div class="text-center mb-4 d-flex flex-column mt-5">
-    <span class="h3 saira-normal-font">{{restaurantName}}</span>
+    <span class="h3 saira-normal-font" *ngIf="restaurantName; else restaurantNameSkeleton ">{{restaurantName}}</span>
   </div>
 
   <div class="container">
     <div class="row justify-content-center">
+      <div class="d-flex justify-content-center flex-wrap gap-4" *ngIf="restaurantName; else loading">
+        <ng-container *ngIf="(menus$ | async) as menus">
+          <div *ngFor="let menu of menus">
+            <div class="card-container d-flex justify-content-center">
+              <app-menu-card [menu]="menu"></app-menu-card>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- content skeleton -->
+<ng-template #loading>
+  <div class="container">
+    <div class="row justify-content-center">
       <div class="d-flex justify-content-center flex-wrap gap-4">
-        <div class="" *ngFor="let menu of (menus$ | async)">
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let item of [].constructor(3)">
           <div class="card-container d-flex justify-content-center">
-            <app-menu-card [menu]="menu"></app-menu-card>
+            <ngx-skeleton-loader [theme]="{
+      width: '100%',
+      'border-radius': '10px',
+      height: '150px',
+      'margin-bottom': '10px'
+    }"></ngx-skeleton-loader>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-</div>
+</ng-template>
+<!--  -->
+
+<!-- Restaraunt name skeleton -->
+<ng-template #restaurantNameSkeleton>
+  <ngx-skeleton-loader [theme]="{
+    width: '200px',
+    'border-radius': '10px',
+    height: '25px',
+  }"></ngx-skeleton-loader>
+</ng-template>
+<!--  -->

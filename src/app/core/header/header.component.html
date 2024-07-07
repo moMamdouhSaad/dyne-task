@@ -2,11 +2,11 @@
   <div class="container  d-flex justify-content-between align-items-center">
     <span class="logo cursor-pointer" [routerLink]="['/']">Dyne task</span>
 
-    <div>
-      <button mat-button>Button1</button>
-      <button mat-button>Button2</button>
+    <div  class="d-flex align-items-center justify-content-between">
+       <div class="cursor-pointer" [routerLink]="['/checkout']">
+        <mat-icon [matBadge]="(cartItemsQty$ | async)">shopping_cart_checkout</mat-icon>
+        <!-- Include text description of the icon's meaning for screen-readers -->
+      </div>
     </div>
-
   </div>
-
 </mat-toolbar>

@@ -13,4 +13,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/menu-items/menu-items.component').then((m) => m.MenuItemsComponent),
   },
+
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./features/checkout/checkout.component').then((m) => m.CheckoutComponent),
+  },
 ];

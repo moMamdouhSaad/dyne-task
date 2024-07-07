@@ -8,6 +8,7 @@ import { IMenuItem } from '../../core/models/menu-item.model';
 import { MenuItemCardComponent } from '../../shared/components/menu-item-card/menu-item-card.component';
 import { RestaurantManager } from '../../core/services/restaurant/restaurant.manager';
 import { IRestaurant } from '../../core/models/restaurant.model';
+import { CartManager } from '../../core/services/cart/cart.manager';
 
 @Component({
   selector: 'app-menu-items',
@@ -26,7 +27,8 @@ export class MenuItemsComponent implements OnInit {
   constructor(
     private menuItemsManager: MenuItemsManager,
     private route: ActivatedRoute,
-    private restaurantManager: RestaurantManager
+    private restaurantManager: RestaurantManager,
+    private cartManager:CartManager
   ) {
    this.menuItemId = this.route.snapshot.paramMap.get('menuId') as
       | number
@@ -54,12 +56,14 @@ export class MenuItemsComponent implements OnInit {
   }
 
   handleAdd(menuItem: IMenuItem) {
-    console.log('Add item:', menuItem);
+    this.cartManager.increaseItemQuantity(menuItem);
+
     // Handle adding the item to the cart
   }
 
   handleRemove(menuItem: IMenuItem) {
-    console.log('Remove item:', menuItem);
+    this.cartManager.decreaseItemQuantity(menuItem.id);
+
     // Handle removing the item from the cart
   }
 

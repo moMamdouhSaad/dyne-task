@@ -45,4 +45,9 @@ export class CartManager {
   resetCart():void{
     this.cartState.resetCartItems()
   }
+
+  getQuantity(id: number): number {
+    const item = this.cartState.getCartItems().find(cartItem => cartItem.id === id);
+    return item ? item.quantity : 0;
+  }
 }

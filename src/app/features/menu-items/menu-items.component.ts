@@ -38,17 +38,14 @@ export class MenuItemsComponent implements OnInit {
   ngOnInit(): void {
     this.menuItems$ = this.menuItemsManager.getMenuItems$();
     this.restaurantManager.loadRestaurants();
+
     this.restaurantManager.getRestaurants$().subscribe((data) => {
-      console.log(data);
+
 
       const result = this.fetchRestaurantAndMenu(this.menuItemId as number, data);
       if (result) {
         this.restaurantName = result.restaurantName
         this.menuName = result.menu.name
-
-        console.log(
-          `Restaurant: ${result.restaurantName}, Menu: ${result.menu.name}`
-        );
       } else {
         console.log('Menu item not found');
       }
@@ -57,14 +54,10 @@ export class MenuItemsComponent implements OnInit {
 
   handleAdd(menuItem: IMenuItem) {
     this.cartManager.increaseItemQuantity(menuItem);
-
-    // Handle adding the item to the cart
   }
 
   handleRemove(menuItem: IMenuItem) {
     this.cartManager.decreaseItemQuantity(menuItem.id);
-
-    // Handle removing the item from the cart
   }
 
   fetchRestaurantAndMenu(menuItemId: number | string, restaurants: IRestaurant[]) {

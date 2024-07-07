@@ -12,7 +12,12 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, RouterModule, MenuCardComponent,NgxSkeletonLoaderModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MenuCardComponent,
+    NgxSkeletonLoaderModule,
+  ],
   templateUrl: 'menu.component.html',
   styleUrl: './menu.component.scss',
   changeDetection: ChangeDetectionStrategy.Default,
@@ -20,65 +25,33 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 export class MenuComponent {
   // restaurantId: number | string;
   menus$!: Observable<IMenu[]>;
-  restaurantName!:string;
+  restaurantName!: string;
   constructor(
     private menuManager: MenuManager,
     private restaurantManager: RestaurantManager,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.loadMenus();
+  }
 
+  private loadMenus(): void {
     const restaurantId = this.route.snapshot.paramMap.get('restaurantId') as
       | number
       | string;
 
-this.loadMenus()
-    // this.restaurantManager.getRestaurants$().s
-    this.restaurantManager.loadRestaurants()
-    this.restaurantManager.getRestaurants$().subscribe(restaurants=>{
-      const selectedRestaurant = restaurants.find(r => r.id == +restaurantId);
-
-      if(selectedRestaurant){
-        this.restaurantName = selectedRestaurant.name;
-        this.menuManager.setRestaurantMenus(selectedRestaurant.menus)
-       this.menus$ =  this.menuManager.getRestaurantMenus$()
-      }
-      else{
-
-      }
-
-    })
-
-
-
-
-
-
-  }
-
-  loadMenus():void{
-    this.restaurantManager.getRestaurants$().pipe(
-      switchMap(() => this.restaurantManager.getRestaurants$())
-    ).subscribe((restaurants:IRestaurant[]) => {
-      // Here you have access to the restaurants array
-      console.log(restaurants);
-
-      // Now you can filter the restaurant by id
-      const restaurantId = this.route.snapshot.paramMap.get('restaurantId') as string;
-      const selectedRestaurant = restaurants.find(r => r.id == +restaurantId);
+    this.restaurantManager.loadRestaurants();
+    this.restaurantManager.getRestaurants$().subscribe((restaurants) => {
+      const selectedRestaurant = restaurants.find((r) => r.id == +restaurantId);
 
       if (selectedRestaurant) {
-        // Do something with selectedRestaurant, e.g., fetch menus
-        console.log(selectedRestaurant);
+        this.restaurantName = selectedRestaurant.name;
+        this.menuManager.setRestaurantMenus(selectedRestaurant.menus);
+        this.menus$ = this.menuManager.getRestaurantMenus$();
       } else {
-        console.error(`Restaurant with id ${restaurantId} not found.`);
-        // Handle the case where no restaurant matches the id (redirect or show message)
+        console.error("some error occurred")
       }
-    }, (error:any) => {
-      console.error('Error loading restaurants:', error);
-      // Handle error scenario (redirect or show message)
     });
   }
 }

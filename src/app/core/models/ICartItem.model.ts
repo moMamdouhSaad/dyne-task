@@ -6,5 +6,4 @@ export interface ICartItem {
   price: number;
   availability: boolean;
   quantity: number;
-
 }

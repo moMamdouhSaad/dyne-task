@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { IMenu } from '../../models/menu.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MenuManager {
   constructor(
@@ -16,26 +16,32 @@ export class MenuManager {
   ) {}
 
   loadMenuItems(menuId: string): void {
-    this.menuService.getMenuItems(menuId).pipe(
-      tap(menuItems => this.menuState.setMenuItems(menuItems))
-    ).subscribe();
+    this.menuService
+      .getMenuItems(menuId)
+      .pipe(tap((menuItems) => this.menuState.setMenuItems(menuItems)))
+      .subscribe();
   }
 
-  getMenuItems$():Observable<IMenuItem[]> {
+  getMenuItems$(): Observable<IMenuItem[]> {
     return this.menuState.getMenuItems$();
   }
 
   loadRestaurantMenus(restaurantId: string): void {
-    this.menuService.getRestaurantMenus(restaurantId).pipe(
-      tap(restaurantMenus => this.menuState.setRestaurantMenus(restaurantMenus))
-    ).subscribe();
+    this.menuService
+      .getRestaurantMenus(restaurantId)
+      .pipe(
+        tap((restaurantMenus) =>
+          this.menuState.setRestaurantMenus(restaurantMenus)
+        )
+      )
+      .subscribe();
   }
 
-  getRestaurantMenus$():Observable<IMenu[]> {
+  getRestaurantMenus$(): Observable<IMenu[]> {
     return this.menuState.getRestaurantMenus$();
   }
 
-  setRestaurantMenus(restMenus:IMenu[]):void{
-    this.menuState.setRestaurantMenus(restMenus)
+  setRestaurantMenus(restMenus: IMenu[]): void {
+    this.menuState.setRestaurantMenus(restMenus);
   }
 }

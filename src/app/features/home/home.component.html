@@ -5,12 +5,9 @@
     <span class="h6 saira-normal-font">Find your favorite restaurant and explore their delicious menus.</span>
   </div>
 
-    <div class="container">
-      <div class="row justify-content-center">
-
-        <ng-container *ngIf="(restaurants$ | async) as restaurants">
-
-
+  <div class="container">
+    <div class="row justify-content-center">
+      <ng-container *ngIf="(restaurants$ | async) as restaurants">
         <div class="d-flex justify-content-center flex-wrap gap-4" *ngIf="restaurants.length > 0 ;else loading">
           <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let restaurant of restaurants">
             <div class="card-container d-flex justify-content-center">
@@ -19,12 +16,8 @@
           </div>
         </div>
       </ng-container>
-
-      </div>
     </div>
-
-
-
+  </div>
 </div>
 
 
@@ -52,4 +45,3 @@
   </div>
 
 </ng-template>
-

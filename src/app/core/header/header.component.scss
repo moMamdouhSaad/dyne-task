@@ -1,9 +1,9 @@
-
 .logo {
   font-size: 1.5em;
   font-weight: bold;
+  font-family: saira;
 }
-
-.spacer {
-  flex: 1 1 auto;
+.my-custom-badge-accent.mat-badge-accent .mat-badge-content {
+  background-color: #f1bf28;
+  color: white;
 }

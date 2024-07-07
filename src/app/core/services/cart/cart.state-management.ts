@@ -12,6 +12,7 @@ export class CartStateService {
   private cartItemsSubject: BehaviorSubject<ICartItem[]> = new BehaviorSubject<
     ICartItem[]
   >([]);
+
   private cartItemsQtySubject: BehaviorSubject<number> =
     new BehaviorSubject<number>(0);
 

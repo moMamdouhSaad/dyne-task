@@ -23,20 +23,8 @@ export class RestaurantManager {
       .subscribe();
   }
 
-
-
-  getRestaurants$() {
+  getRestaurants$():Observable<IRestaurant[]> {
     return this.restaurantState.getRestaurants$();
   }
 
-  // loadMenus(restaurantId: string): void {
-  //   this.restaurantService
-  //     .getMenus(restaurantId)
-  //     .pipe(tap((menus) => this.restaurantState.setMenus(menus)))
-  //     .subscribe();
-  // }
-
-  // getMenus$() {
-  //   return this.restaurantState.getMenus$();
-  // }
 }

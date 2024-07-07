@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { MenuItemsStateService } from './menu-items.state-management';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MenuItemsManager {
   constructor(
@@ -15,14 +15,14 @@ export class MenuItemsManager {
   ) {}
 
   loadMenuItems(menuId: string): void {
-    this.menuItemsState.setMenuItems([])
-    this.menuService.getMenuItems(menuId).pipe(
-      tap(menuItems => this.menuItemsState.setMenuItems(menuItems))
-    ).subscribe();
+    this.menuItemsState.setMenuItems([]);
+    this.menuService
+      .getMenuItems(menuId)
+      .pipe(tap((menuItems) => this.menuItemsState.setMenuItems(menuItems)))
+      .subscribe();
   }
 
-  getMenuItems$():Observable<IMenuItem[]> {
+  getMenuItems$(): Observable<IMenuItem[]> {
     return this.menuItemsState.getMenuItems$();
   }
-
 }

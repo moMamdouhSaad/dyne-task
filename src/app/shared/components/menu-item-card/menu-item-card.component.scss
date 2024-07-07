@@ -1,53 +1,53 @@
-
-.example-card {
-    width: 220px;
-    height: 100% !important;
+.custom-card {
+  width: 220px;
+  height: 100% !important;
 
 }
-:host{
+
+:host {
   height: 100% !important;
 }
 
-.rest-img {
-  height: 100px; /* Set a fixed height */
-  width: 100%; /* Ensure the image takes full width of its container */
-  object-fit: cover; /* Maintain aspect ratio; cover entire container */
-  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+.menu-item-img {
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
 
-  &:hover{
-    opacity: 0.8; /* Adjust opacity on hover */
-    cursor: pointer;
-
+  &:hover {
+    opacity: 0.8;
   }
 }
 
 
-.rest-title{
-  color:var(--gold);
+.menu-item-title {
+  color: var(--gold);
   display: flex !important;
-  justify-content: center !important ;
-  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+  justify-content: center !important;
+  transition: opacity 0.3s ease;
+  /* Smooth transition for opacity change */
   font-family: Saira !important
 }
 
-.tag-title{
+.tag-title {
   font-family: Saira !important
-
 }
 
 
 .unavailable {
-  color: red !important;
-  font-weight: bold;
+  color: var(--warn) !important;
+  font-weight: semi-bold;
 }
 
 
 .description {
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-line-clamp: 3;
+  /* number of lines to show */
   -webkit-box-orient: vertical;
-  max-height: 50px; /* line-height * number of lines */
+  max-height: 50px;
+  /* line-height * number of lines */
   min-height: 50px !important;
   display: flex;
   align-items: center;
@@ -58,4 +58,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.actions-container {
+  display: inline-block;
+  height: 100%;
+  vertical-align: bottom;
 }

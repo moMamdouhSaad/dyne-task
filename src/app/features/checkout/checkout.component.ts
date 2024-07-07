@@ -13,6 +13,7 @@ import {
   LazyLoadImageModule,
   ScrollHooks,
 } from 'ng-lazyload-image';
+import { EMPTY, catchError, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -24,16 +25,15 @@ import {
     MatButtonModule,
     MatDialogModule,
     RouterModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
   ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
-
 })
 export class CheckoutComponent implements OnInit {
-  defaultImg = 'assets/unavailable-img.jpg'
+  defaultImg = 'assets/unavailable-img.jpg';
   cartItems$ = this.cartManager.getCartItems$();
 
   constructor(
@@ -53,23 +53,21 @@ export class CheckoutComponent implements OnInit {
   placeOrder(): void {
     const randomNumber = Math.floor(Math.random() * 10);
 
-    this.cartManager
-      .placeOrder(randomNumber)
-      .subscribe(
-        (data) => {},
-        (err) => {
-          console.log(err);
-        }
-      )
-      .add(() => {
+    this.cartManager.placeOrder(randomNumber).pipe(
+      catchError((err) => {
+        console.error('Error placing order:', err);
+        return EMPTY;
+      }),
+      finalize(() => {
         const dialogRef = this.dialog.open(SuccessMessageDialogComponent, {
           width: '250px',
         });
 
         dialogRef.afterClosed().subscribe(() => {
           this.router.navigate(['/']);
-          this.cartManager.resetCart()
+          this.cartManager.resetCart();
         });
-      });
+      })
+    ).subscribe();
   }
 }

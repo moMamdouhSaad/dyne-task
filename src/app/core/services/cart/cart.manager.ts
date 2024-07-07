@@ -16,12 +16,12 @@ export class CartManager {
     private cartState: CartStateService
   ) {}
 
-  increaseItemQuantity(menuItem: IMenuItem) {
+  increaseItemQuantity(menuItem: IMenuItem): void {
     const cartItem: ICartItem = { ...menuItem, quantity: 1 };
     this.cartState.addItem(cartItem);
   }
 
-  decreaseItemQuantity(itemId: number) {
+  decreaseItemQuantity(itemId: number): void {
     this.cartState.decreaseItemQuantity(itemId);
   }
 
@@ -42,12 +42,14 @@ export class CartManager {
     return this.cartService.placeOrder(restId, orderItems);
   }
 
-  resetCart():void{
-    this.cartState.resetCartItems()
+  resetCart(): void {
+    this.cartState.resetCartItems();
   }
 
   getQuantity(id: number): number {
-    const item = this.cartState.getCartItems().find(cartItem => cartItem.id === id);
+    const item = this.cartState
+      .getCartItems()
+      .find((cartItem) => cartItem.id === id);
     return item ? item.quantity : 0;
   }
 }

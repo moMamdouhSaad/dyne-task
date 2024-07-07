@@ -14,7 +14,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     CommonModule,
     RouterModule,
     RestaurantCardComponent,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -29,4 +29,4 @@ export class HomeComponent {
     this.restaurantManager.loadRestaurants();
     this.restaurants$ = this.restaurantManager.getRestaurants$();
   }
- }
+}

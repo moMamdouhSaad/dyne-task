@@ -6,12 +6,12 @@
     </div>
   </ng-container>
 
-
   <div class="container" *ngIf="(menuItems$ | async) as menuItems">
     <div class="row justify-content-center" *ngIf="menuItems.length > 0; else loading">
       <div class="grid-container">
         <div *ngFor="let menuItem of menuItems">
-          <app-menu-item-card  [menuItem]="menuItem" [quantity]="2" (add)="handleAdd($event)" (remove)="handleRemove($event)">
+          <app-menu-item-card [menuItem]="menuItem" [quantity]="2" (add)="handleAdd($event)"
+            (remove)="handleRemove($event)">
           </app-menu-item-card>
         </div>
       </div>
@@ -19,7 +19,6 @@
   </div>
 
 </div>
-
 
 <!-- content skeleton -->
 <ng-template #loading>
@@ -40,10 +39,6 @@
 
 </ng-template>
 <!--  -->
-
-
-
-
 
 
 <!-- Restaraunt name skeleton -->

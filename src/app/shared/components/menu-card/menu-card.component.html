@@ -3,7 +3,7 @@
     <mat-card-title  class="rest-title cursor-pointer">{{menu.name}}</mat-card-title>
     <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
   </mat-card-header>
-  <img class="rest-img" mat-card-image [src]="menu.background || defaultImg" alt="Photo of a menu" >
+  <img class="rest-img" mat-card-image [defaultImage]="defaultImg" [lazyLoad]="menu.background" alt="Photo of a menu" >
 
 </mat-card>
 

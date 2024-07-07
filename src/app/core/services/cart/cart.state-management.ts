@@ -102,9 +102,7 @@ export class CartStateService {
     this.cartItemsSubject.next([]);
     this.cartItemsQtySubject.next(0);
     this.cartItemsQty = 0;
-   localStorage.removeItem(this.CART_ITEMS_LOCALSTORAGE_KEY);
- localStorage.removeItem(
-      this.CART_ITEMS_QYT_LOCALSTORAGE_KEY
-    );
+    localStorage.removeItem(this.CART_ITEMS_LOCALSTORAGE_KEY);
+    localStorage.removeItem(this.CART_ITEMS_QYT_LOCALSTORAGE_KEY);
   }
 }

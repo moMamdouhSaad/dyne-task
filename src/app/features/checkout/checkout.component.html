@@ -15,7 +15,7 @@
 
     <div class="d-flex align-items-center">
       <div>
-        <img [src]="item.thumbnail" class="item-img" alt="" srcset="">
+        <img [src]="item.thumbnail"  [defaultImage]="defaultImg" [lazyLoad]="item.thumbnail"class="item-img" alt="" srcset="">
       </div>
 
       <!-- Right side card -->

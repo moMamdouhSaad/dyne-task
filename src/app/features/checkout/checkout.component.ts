@@ -8,6 +8,11 @@ import { ICartItem } from '../../core/models/ICartItem.model';
 import { Router, RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SuccessMessageDialogComponent } from './success-message.dialog';
+import {
+  LAZYLOAD_IMAGE_HOOKS,
+  LazyLoadImageModule,
+  ScrollHooks,
+} from 'ng-lazyload-image';
 
 @Component({
   selector: 'app-checkout',
@@ -19,12 +24,16 @@ import { SuccessMessageDialogComponent } from './success-message.dialog';
     MatButtonModule,
     MatDialogModule,
     RouterModule,
+    LazyLoadImageModule
   ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
+
 })
 export class CheckoutComponent implements OnInit {
+  defaultImg = 'assets/unavailable-img.jpg'
   cartItems$ = this.cartManager.getCartItems$();
 
   constructor(

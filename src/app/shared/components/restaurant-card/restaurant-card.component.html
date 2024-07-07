@@ -1,29 +1,17 @@
 <mat-card class="example-card" appearance="outlined">
   <mat-card-header class="mb-2">
-    <mat-card-title [routerLink]="['restaurant',restaurant.id]" class="rest-title cursor-pointer">{{restaurant.name}}</mat-card-title>
-    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    <mat-card-title [routerLink]="['restaurant',restaurant.id]"
+      class="rest-title cursor-pointer">{{restaurant.name}}</mat-card-title>
   </mat-card-header>
-  <img class="rest-img" mat-card-image [src]="restaurant.restaurantBackground || defaultImg" alt="Photo of a restaurant" [routerLink]="['restaurant',restaurant.id]">
-  <!-- <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content> -->
-  <mat-card-actions >
-
-
-
+  <img class="rest-img" mat-card-image [defaultImage]="defaultImg" [lazyLoad]="restaurant.restaurantBackground"
+    alt="Photo of a restaurant" [routerLink]="['restaurant',restaurant.id]">
+  <mat-card-actions>
 
     <mat-chip-set>
       @for (tag of restaurant.tags; track tag) {
-        <mat-chip class="tag-title">{{tag}}</mat-chip>
+      <mat-chip class="tag-title">{{tag}}</mat-chip>
       }
     </mat-chip-set>
 
-
-
   </mat-card-actions>
 </mat-card>
-

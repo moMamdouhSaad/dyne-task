@@ -9,7 +9,7 @@ import {MatChipsModule} from '@angular/material/chips';
 @Component({
   selector: 'app-restaurant-card',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, RouterModule,MatChipsModule],
+  imports: [CommonModule, MatButtonModule, MatCardModule, RouterModule, MatChipsModule],
   templateUrl: 'restaurant-card.component.html',
   styleUrl: './restaurant-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

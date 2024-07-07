@@ -1,0 +1,9 @@
+<mat-card class="example-card cursor-pointer pb-3" appearance="outlined" [routerLink]="['menus',menu.id]">
+  <mat-card-header class="mb-2">
+    <mat-card-title  class="rest-title cursor-pointer">{{menu.name}}</mat-card-title>
+    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+  </mat-card-header>
+  <img class="rest-img" mat-card-image [src]="menu.background || defaultImg" alt="Photo of a menu" >
+
+</mat-card>
+

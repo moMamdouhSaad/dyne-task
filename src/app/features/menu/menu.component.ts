@@ -6,11 +6,12 @@ import { MenuManager } from '../../core/services/menu/menu.manager';
 import { RestaurantManager } from '../../core/services/restaurant/restaurant.manager';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { IRestaurant } from '../../core/models/restaurant.model';
+import { MenuCardComponent } from '../../shared/components/menu-card/menu-card.component';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MenuCardComponent],
   templateUrl: 'menu.component.html',
   styleUrl: './menu.component.scss',
   changeDetection: ChangeDetectionStrategy.Default,
@@ -18,7 +19,7 @@ import { IRestaurant } from '../../core/models/restaurant.model';
 export class MenuComponent {
   // restaurantId: number | string;
   menus$!: Observable<IMenu[]>;
-
+  restaurantName!:string;
   constructor(
     private menuManager: MenuManager,
     private restaurantManager: RestaurantManager,
@@ -33,9 +34,7 @@ export class MenuComponent {
     const restaurantId = this.route.snapshot.paramMap.get('restaurantId') as
       | number
       | string;
-      this.menuManager.getRestaurantMenus$().subscribe(data=>{
-        console.log(data)
-      })
+
 this.loadMenus()
     // this.restaurantManager.getRestaurants$().s
     this.restaurantManager.loadRestaurants()
@@ -43,6 +42,7 @@ this.loadMenus()
       const selectedRestaurant = restaurants.find(r => r.id == +restaurantId);
 
       if(selectedRestaurant){
+        this.restaurantName = selectedRestaurant.name
         this.menuManager.setRestaurantMenus(selectedRestaurant.menus)
        this.menus$ =  this.menuManager.getRestaurantMenus$()
       }

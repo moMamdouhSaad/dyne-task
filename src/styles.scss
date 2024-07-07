@@ -26,10 +26,59 @@ body { margin: 0;
 }
 
 
+// :root {
+//   --primary: #007bff;
+//   --gold: #ffc107;
+//   --warn: #dc3545;
+//   --gray: #f8f9fa;
+//   /* Define other colors as needed */
+// }
+
 :root {
   --primary: #007bff;
-  --gold: #ffc107;
+  --gold: #deb841;
+  --dark-gold: #de9e36;
+
   --warn: #dc3545;
   --gray: #f8f9fa;
-  /* Define other colors as needed */
+}
+
+
+
+.dark-gold{
+  color:var(--dark-gold)
+}
+.gold{
+  color:var(--gold)
+
+}
+
+
+.semi-bold{
+  font-weight: 500;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.font-17{
+  font-size: 17px !important;
 }

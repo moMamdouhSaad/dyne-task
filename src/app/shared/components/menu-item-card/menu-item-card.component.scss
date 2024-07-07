@@ -1,0 +1,61 @@
+
+.example-card {
+    width: 220px;
+    height: 100% !important;
+
+}
+:host{
+  height: 100% !important;
+}
+
+.rest-img {
+  height: 100px; /* Set a fixed height */
+  width: 100%; /* Ensure the image takes full width of its container */
+  object-fit: cover; /* Maintain aspect ratio; cover entire container */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+
+  &:hover{
+    opacity: 0.8; /* Adjust opacity on hover */
+    cursor: pointer;
+
+  }
+}
+
+
+.rest-title{
+  color:var(--gold);
+  display: flex !important;
+  justify-content: center !important ;
+  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+  font-family: Saira !important
+}
+
+.tag-title{
+  font-family: Saira !important
+
+}
+
+
+.unavailable {
+  color: red !important;
+  font-weight: bold;
+}
+
+
+.description {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  max-height: 50px; /* line-height * number of lines */
+  min-height: 50px !important;
+  display: flex;
+  align-items: center;
+}
+
+.mat-card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

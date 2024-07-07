@@ -1,25 +1,19 @@
 <div class="home">
   <ng-container *ngIf="restaurantName; else restaurantNameSkeleton ">
-
     <div class="text-center mb-4 d-flex flex-column mt-5">
       <span class="h3 saira-normal-font">{{restaurantName}}</span>
       <span class="h6 saira-normal-font">{{menuName}}</span>
     </div>
-
   </ng-container>
 
 
   <div class="container" *ngIf="(menuItems$ | async) as menuItems">
     <div class="row justify-content-center" *ngIf="menuItems.length > 0; else loading">
       <div class="grid-container">
-
-
         <div *ngFor="let menuItem of menuItems">
           <app-menu-item-card [menuItem]="menuItem" (add)="handleAdd($event)" (remove)="handleRemove($event)">
           </app-menu-item-card>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -54,7 +48,6 @@
 
 <!-- Restaraunt name skeleton -->
 <ng-template #restaurantNameSkeleton>
-
   <div class="text-center mb-4 d-flex flex-column mt-5">
     <ngx-skeleton-loader [theme]="{
       width: '200px',
@@ -68,8 +61,5 @@
     height: '15px',
   }"></ngx-skeleton-loader>
   </div>
-
-
-
 </ng-template>
 <!--  -->

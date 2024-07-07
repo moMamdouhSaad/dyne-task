@@ -1,47 +1,73 @@
+
+<ng-container *ngIf="(cartItems$ | async) as cartItems" >
+  <ng-container *ngIf="cartItems.length else NoItemsAddedMessage" >
+
 <div class="container mt-4">
   <div class="text-center mb-4 d-flex flex-column mt-5">
     <span class="h3 saira-normal-font">Review and Place Your Order</span>
-    <span class="h6 saira-normal-font">Confirm the items in your cart, adjust quantities if needed, and securely place your order with us. Thank you for choosing our service</span>
+    <span class="h6 saira-normal-font">Confirm the items in your cart, adjust quantities if needed, and securely place
+      your order with us. Thank you for choosing our service</span>
   </div>
 
-  <!-- List of Added Items -->
-  <mat-card *ngFor="let item of (cartItems$ | async)" class="mb-3 px-2 ">
 
-<div class="d-flex align-items-center">
-  <div >
-    <img  [src]="item.thumbnail" class="item-img" alt="" srcset="">
-  </div>
 
-  <!-- Right side card -->
-<div>
-<mat-card-header>
-  <mat-card-title class="saira-normal-font gold">{{ item.name }}</mat-card-title>
-  <mat-card-subtitle class="saira-normal-font">Quantity: {{ item.quantity }}</mat-card-subtitle>
-</mat-card-header>
-<mat-card-content >
-  <!-- Controls to Adjust Quantity -->
-  <div calss="d-flex align-items-center" style="border:1px red dashed" style="display:flex;align-items: center !important;">
-    <button mat-icon-button (click)="decreaseQuantity(item)">
-      <mat-icon>remove</mat-icon>
-    </button>
-    <span class="gold mx-3">{{ item.quantity }}</span>
-    <button mat-icon-button (click)="increaseQuantity(item)">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
+  <mat-card *ngFor="let item of cartItems" class="mb-3 px-2 ">
 
-</mat-card-content>
-</div>
-<!--  -->
-</div>
+    <div class="d-flex align-items-center">
+      <div>
+        <img [src]="item.thumbnail" class="item-img" alt="" srcset="">
+      </div>
+
+      <!-- Right side card -->
+      <div>
+        <mat-card-header>
+          <mat-card-title class="saira-normal-font gold">{{ item.name }}</mat-card-title>
+          <mat-card-subtitle class="saira-normal-font">Quantity: {{ item.quantity }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- Controls to Adjust Quantity -->
+          <div calss="d-flex align-items-center" style="border:1px red dashed"
+            style="display:flex;align-items: center !important;">
+            <button mat-icon-button (click)="decreaseQuantity(item)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <span class="gold mx-3">{{ item.quantity }}</span>
+            <button mat-icon-button (click)="increaseQuantity(item)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+
+        </mat-card-content>
+      </div>
+      <!--  -->
+    </div>
 
 
 
   </mat-card>
 
+    <!-- Place Order Button -->
+    <div class="text-center mt-4">
+      <button mat-raised-button  class='gold saira-normal-font'(click)="placeOrder()">Place Order</button>
+    </div>
 
-  <!-- Place Order Button -->
-  <div class="text-center mt-4">
-    <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
-  </div>
 </div>
+</ng-container>
+
+</ng-container>
+
+
+<ng-template #NoItemsAddedMessage>
+
+  <div class="container mt-4">
+    <div class="text-center mb-4 d-flex flex-column mt-5">
+      <span class="h3 saira-normal-font">No Items found</span>
+      <span class="h6 saira-normal-font">
+        <a [routerLink]="['/']" >
+          Explore our restaurants
+        </a>
+        </span>
+
+    </div>
+  </div>
+  </ng-template>
